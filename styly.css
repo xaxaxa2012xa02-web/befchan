@@ -1,0 +1,128 @@
+body {
+    background-color: #eeeff2; /* Світло-сірий або колір паперу */
+    font-family: "Tahoma", "Verdana", "Arial", sans-serif;
+    font-size: 13px;
+    color: #333
+}
+
+.back {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* Центрує по горизонталі */
+  align-items: flex-start; /* Розміщує зверху */
+  padding-top: 20px;       /* Відступ від краю, якщо треба */
+  width: 100%;
+}
+
+.centered-img {
+  max-width: 300px; /* Зменшує ширину, зберігаючи пропорції */
+  height: auto;     /* Автоматична висота для збереження пропорцій */
+}
+
+
+.zagologg {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 50px;
+}
+
+.zagolog {
+    text-align: center;
+}
+
+.register {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+}
+
+/* Додай це до styly.css */
+input, button, textarea {
+    border: 2px inset #fff;
+    background-color: #ced4da;
+    font-family: "MS Sans Serif", "Arial", sans-serif;
+}
+
+button:active {
+    border: 2px outset #fff;
+}
+
+.back {
+    text-decoration: none;
+    padding: 2px 5px;
+    border: 1px solid white;
+}
+
+.post-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 3px;
+    border: 1px solid #000;
+    background-color: #eee;
+}
+
+.statistik {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+}
+.board {
+    
+    display: inline-block;
+    margin: 30px;
+    padding: 40px 20px;
+
+    font-size: 25px;
+    
+     
+}
+
+.vhid {
+    font-size: 30px;
+}
+
+
+button {
+    border-radius: 0;
+    border: 1px solid #777;
+    background: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%);
+    cursor: pointer;
+    padding: 3px 10px;
+}
+
+/* Поля вводу з чіткими внутрішніми тінями */
+input[type="text"], input[type="file"] {
+    border: 1px solid #999;
+    border-radius: 0;
+    padding: 4px;
+}
+
+/* Секція налаштувань профілю як "вікно" */
+.post-form {
+    border: 2px solid #999;
+    background-color: #d1d5da;
+    padding: 10px;
+    box-shadow: 2px 2px 0px #fff inset, -1px -1px 0px #333 inset;
+    max-width: 400px;
+}
+
+/* Дошки (посилання) робимо синіми з підкресленням при наведенні */
+.board {
+    color: #0000ee;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+    border: 1px solid transparent;
+}
+
+.board:hover {
+    text-decoration: underline;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
