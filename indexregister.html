@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styly.css">
+    <title>register</title>
+</head>
+<body>
+
+    <a class="back" href="index.html">назад</a>
+    <h1 class="register">регістрація на цій сторінці</h1>
+    <p>логін</p>
+    <input type="text" name="" id="">
+
+    <p>пароль</p>
+    <input type="password" name="" id="">
+
+    
+<div></div>
+    <script>
+function register() {
+    const login = document.querySelector('input[type="text"]').value;
+    const pass = document.querySelector('input[type="password"]').value;
+    
+    if(login && pass) {
+        localStorage.setItem('user_login', login);
+        localStorage.setItem('user_pass', pass);
+        alert('Ви зареєстровані як: ' + login);
+        window.location.href = 'indexvhid.html';
+    } else {
+        alert('Заповніть всі поля!');
+    }
+}
+</script>
+
+// Заміни свій <button> на:
+<button onclick="register()">зареєструватися</button>
+
+</body>
+</html>

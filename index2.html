@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styly.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <a class="back" href="index.html">назад</a>
+    <h1 class="zagolog"> дошка 1   </h1>
+</div>
+
+<div class="post-form">
+    <textarea id="postText" placeholder="Що думаєш?"></textarea>
+    <button onclick="addPost()">Відправити</button>
+</div>
+
+<div id="postsContainer"></div>
+
+<script>
+function addPost() {
+    const text = document.getElementById('postText').value;
+    if(!text) return;
+
+    const container = document.getElementById('postsContainer');
+    const post = document.createElement('div');
+    post.style.border = "1px solid black";
+    post.style.margin = "10px 0";
+    post.style.padding = "5px";
+    post.innerHTML = `<strong>Анонім:</strong> <p>${text}</p>`;
+    
+    container.prepend(post);
+    document.getElementById('postText').value = "";
+}
+</script>
+    
+    
+</body>
+</html>

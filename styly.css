@@ -1,0 +1,40 @@
+body {
+    background-color: rgb(189, 255, 183);
+}
+
+.back {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+.zagologg {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 50px;
+}
+
+.zagolog {
+    text-align: center;
+}
+
+.register {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+}
+
+/* Додай це до styly.css */
+input, button, textarea {
+    border: 2px inset #fff;
+    background-color: #ced4da;
+    font-family: "MS Sans Serif", "Arial", sans-serif;
+}
+
+button:active {
+    border: 2px outset #fff;
+}
+
+.back {
+    text-decoration: none;
+    padding: 2px 5px;
+    border: 1px solid white;
+}
