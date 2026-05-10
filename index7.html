@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styly.css">
+    <title>дошка 8</title>
+</head>
+<body>
+
+<body>
+    <div>
+        <a class="back" href="index.html">назад</a>
+        <h1 class="zagolog" id="boardTitle">дошка 6</h1>
+    </div>
+
+    <button id="backToThreads" style="display:none;" onclick="showThreadList()">← Назад до тредів</button>
+
+    <div id="threadForm" class="post-form">
+        <h3>Створити новий тред</h3>
+        <input type="text" id="threadTitle" placeholder="Назва треду">
+        <textarea id="threadText" placeholder="Текст першого поста"></textarea>
+        <input type="file" id="threadImage" accept="image/*">
+        <button onclick="createThread()">Створити тред</button>
+    </div>
+
+    <div id="replyForm" class="post-form" style="display:none;">
+        <h3>Відповісти у тред</h3>
+        <textarea id="replyText" placeholder="Ваша відповідь"></textarea>
+        <input type="file" id="replyImage" accept="image/*">
+        <button onclick="addReply()">Відправити</button>
+    </div>
+
+    <hr>
+
+    <div id="mainContent"></div>
+
+<script>
+    let threads = JSON.parse(localStorage.getItem('board_6_threads')) || [];
+    let currentThreadId = null;
+
+    window.onload = () => {
+        renderThreads();
+    };
+
+    function createThread() {
+        const title = document.getElementById('threadTitle').value;
+        const text = document.getElementById('threadText').value;
+        const imageInput = document.getElementById('threadImage');
+        const user = localStorage.getItem('user_login') || "Анонім";
+
+        if (!title || !text) return alert("Заповни назву та текст!");
+
+        const newThread = {
+            id: Date.now(),
+            title: title,
+            author: user,
+            content: text,
+            image: imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : null,
+            replies: []
+        };
+
+        threads.push(newThread);
+        saveAndRender();
+
+        document.getElementById('threadTitle').value = "";
+        document.getElementById('threadText').value = "";
+        imageInput.value = "";
+    }
+
+    // Нова допоміжна функція для збереження
+    function saveAndRender() {
+        localStorage.setItem('board_6_threads', JSON.stringify(threads));
+        if (currentThreadId) {
+            renderCurrentThread();
+        } else {
+            renderThreads();
+        }
+    }
+
+    function renderThreads() {
+        const container = document.getElementById('mainContent');
+        const currentUser = localStorage.getItem('user_login');
+        container.innerHTML = "<h2>Список тредів:</h2>";
+
+        threads.forEach(t => {
+            const threadPreview = document.createElement('div');
+            threadPreview.className = "thread-card";
+            threadPreview.style = "border: 2px solid black; padding: 10px; margin-bottom: 10px; background: #e0ffe0; position: relative;";
+            
+            // Кнопка видалення для власника треду
+            let deleteBtn = (t.author === currentUser && currentUser !== null) 
+                ? `<button onclick="deleteThread(${t.id}, event)" style="position: absolute; right: 10px; top: 10px; background: red; color: white;">Видалити</button>` 
+                : "";
+
+            threadPreview.innerHTML = `
+                ${deleteBtn}
+                <div onclick="openThread(${t.id})">
+                    <strong>#${t.id} [${t.author}]</strong>
+                    <h4>${t.title}</h4>
+                    <p>${t.content.substring(0, 50)}...</p>
+                    <small>Відповідей: ${t.replies.length}</small>
+                </div>
+            `;
+            container.appendChild(threadPreview);
+        });
+    }
+
+    // Видалення всього треду
+    function deleteThread(id, event) {
+        event.stopPropagation(); // Щоб не відкривався тред при кліку на кнопку
+        if(confirm("Видалити цей тред?")) {
+            threads = threads.filter(t => t.id !== id);
+            saveAndRender();
+        }
+    }
+
+    function renderCurrentThread() {
+        const thread = threads.find(t => t.id === currentThreadId);
+        if (!thread) return showThreadList();
+        
+        const container = document.getElementById('mainContent');
+        // Отримуємо актуальний нік для перевірки прав на видалення
+        const currentUser = localStorage.getItem('user_nickname');
+        container.innerHTML = "";
+
+        // ОП-пост
+        const opPost = document.createElement('div');
+        opPost.style = "border: 3px solid green; padding: 15px; background: #fff; margin-bottom: 10px;";
+        let imgHtml = thread.image ? `<br><img src="${thread.image}" style="max-width:200px;">` : "";
+        opPost.innerHTML = `
+            <strong style="cursor:pointer; color: blue;" onclick="prepareReply('${thread.author}')">ОП (${thread.author}):</strong>
+            <p>${thread.content}</p>${imgHtml}
+        `;
+        container.appendChild(opPost);
+
+        // Відповіді
+        const repliesDiv = document.createElement('div');
+        repliesDiv.style.marginLeft = "30px";
+        
+        thread.replies.forEach((r, index) => {
+            const rDiv = document.createElement('div');
+            rDiv.style = "border: 1px solid gray; padding: 10px; margin-top: 5px; background: #f9f9f9; position: relative;";
+            
+            // Кнопка видалення відповіді (якщо нік збігається)
+            let delReplyBtn = (r.author === currentUser && currentUser !== null)
+                ? `<button onclick="deleteReply(${index})" style="float: right; background: pink; border: 1px solid red; font-size: 10px;">видалити</button>`
+                : "";
+
+            let rImgHtml = r.image ? `<br><img src="${r.image}" style="max-width:150px;">` : "";
+            let replyToInfo = r.replyTo ? `<span style="color: gray; font-size: 0.8em;"> >> ${r.replyTo}</span>` : "";
+            
+            // --- Твій доданий блок для аватарок ---
+            const avatarTag = r.avatar ? `<img src="${r.avatar}" style="width:30px; height:30px; border-radius:50%; vertical-align:middle; margin-right:5px;">` : "";
+            // --------------------------------------
+
+            rDiv.innerHTML = `
+                ${delReplyBtn}
+                <div class="reply-header">
+                    ${avatarTag}
+                    <strong style="cursor:pointer; color: blue;" onclick="prepareReply('${r.author}')">${r.author}${replyToInfo}:</strong> 
+                </div>
+                <p style="margin: 5px 0;">${r.content}</p>
+                ${rImgHtml}
+            `;
+            repliesDiv.appendChild(rDiv);
+        });
+        container.appendChild(repliesDiv);
+    }
+
+    // Видалення відповіді за індексом
+    function deleteReply(index) {
+        if(confirm("Видалити твій коментар?")) {
+            const thread = threads.find(t => t.id === currentThreadId);
+            thread.replies.splice(index, 1); // Видаляємо 1 елемент з масиву
+            saveAndRender();
+        }
+    }
+
+function addReply() {
+    const text = document.getElementById('replyText').value;
+    const imageInput = document.getElementById('replyImage');
+    
+    // ВИПРАВЛЕННЯ: беремо новий ключ 'user_nickname' 
+    // і додаємо підтримку аватарок
+    const user = localStorage.getItem('user_nickname') || "Анонім";
+    const avatar = localStorage.getItem('user_avatar') || null;
+
+    if (!text) return;
+
+    let replyTo = text.startsWith('@') ? text.split(' ')[0].replace('@', '') : null;
+    const thread = threads.find(t => t.id === currentThreadId);
+    
+    thread.replies.push({
+        author: user,
+        avatar: avatar, // зберігаємо аватарку в об'єкт відповіді
+        content: text,
+        replyTo: replyTo,
+        image: imageInput.files[0] ? URL.createObjectURL(imageInput.files[0]) : null
+    });
+
+    saveAndRender();
+    document.getElementById('replyText').value = "";
+    imageInput.value = "";
+}
+
+    function prepareReply(author) {
+        const input = document.getElementById('replyText');
+        input.value = `@${author} ` + input.value;
+        input.focus();
+    }
+
+    function showThreadList() {
+        currentThreadId = null;
+        document.getElementById('threadForm').style.display = "block";
+        document.getElementById('replyForm').style.display = "none";
+        document.getElementById('backToThreads').style.display = "none";
+        document.getElementById('boardTitle').innerText = "дошка 1";
+        renderThreads();
+    }
+</script>
+</body>
+    
+    
+</body>
+</html>
