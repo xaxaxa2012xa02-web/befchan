@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styly.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <a class="back" href="index.html">назад</a>
+    <h1 class="zagolog"> дошка 1   </h1>
+</div>
+
+<div class="post-form">
+    <textarea id="postText" placeholder="Що думаєш?"></textarea>
+    <button onclick="addPost()">Відправити</button>
+</div>
+
+<div id="postsContainer"></div>
+
+<div class="post-form">
+    <textarea id="postText" placeholder="Що думаєш?"></textarea>
+    <input type="file" id="postImage" accept="image/*"> 
+    <button onclick="addPost()">Відправити</button>
+</div>
+
+<div id="postsContainer"></div>
+
+<script>
+function addPost() {
+    const text = document.getElementById('postText').value;
+    const imageInput = document.getElementById('postImage');
+    const container = document.getElementById('postsContainer');
+    
+    // 1. Логіка автора: перевіряємо, чи є логін у пам'яті
+    const savedUser = localStorage.getItem('user_login');
+    const author = savedUser ? savedUser : "Анонім";
+
+    if(!text && !imageInput.files[0]) return;
+
+    const post = document.createElement('div');
+    post.style.border = "1px solid black";
+    post.style.margin = "10px 0";
+    post.style.padding = "10px";
+    post.style.backgroundColor = "#f0f0f0";
+
+    // 2. Логіка медіа: створюємо URL для картинки, якщо вона обрана
+    let imageHtml = "";
+    if (imageInput.files[0]) {
+        const imageUrl = URL.createObjectURL(imageInput.files[0]);
+        imageHtml = `<br><img src="${imageUrl}" style="max-width: 300px; display: block; margin-top: 5px;">`;
+    }
+
+    post.innerHTML = `<strong>${author}:</strong> <p>${text}</p>${imageHtml}`;
+    
+    container.prepend(post);
+
+    // Очищення полів
+    document.getElementById('postText').value = "";
+    imageInput.value = "";
+}
+</script>
+    
+    
+</body>
+</html>
