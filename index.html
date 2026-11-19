@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/cute_conata.png">
+    <link rel="stylesheet" href="styly.css">
+    <script src="script.js"></script>
+    <title>befchan</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-banner">
+            
+            <p> <img src="img/logo.png" alt=""> </p>
+            <div class="header-overlay">
+                <h1 class="header-title"></h1>
+                <div class="container">
+                    <p> befchan анонімна іміджборда для всіх (｡· v ·｡) </p>
+                </div>
+            </div>
+            <p class="header-subtitle">( ˶°ㅁ°) </p>
+        </div>
+    </header>
+
+    <div id="profile-settings" class="post-form">
+        <h3>профіль (｡· v ·｡)</h3>
+
+        <div id="profile-view" style="text-align: center; margin-bottom: 15px;">
+            <div id="profile-avatar-container"></div>
+            <h4 id="profile-nick-display" style="margin: 5px 0; color: #0f0c5d;"></h4>
+            <p id="profile-threads-count" style="font-size: 8pt; color: #666; margin: 3px 0;"></p>
+            <p id="profile-desc-display" style="font-size: 9pt; color: #444; font-style: italic;"></p>
+        </div>
+
+        <hr style="margin: 10px 0;">
+
+        <h4>Редагувати дані:</h4>
+        <input type="text" id="username-input" placeholder="Твій нікнейм">
+        
+
+
+        <!-- Панель з Каомоджі / ASCII смайлами -->
+        <div class="kaomoji-bar" style="margin-bottom: 5px; text-align: left; font-size: 9pt;">
+            <span style="font-weight: bold; color: #555;">Каомоджі: </span>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomoji('(｡· v ·｡)')">(｡· v ·｡)</button>
+
+            <button type="button" class="kaomoji-btn" onclick="insertKaomoji('( ͡° ͜ʖ ͡°)')">( ͡° ͜ʖ ͡°)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomoji('(•_•)')">(•_•)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomoji('(x_x)')">(x_x)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomoji('( ˶°ㅁ°)')">( ˶°ㅁ°)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomoji('( >_< )')">( >_< )</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomoji('¯\\_(ツ)_/¯')">¯\_(ツ)_/¯</button>
+        </div>
+
+        <textarea id="description-input" placeholder="Про себе (опис профілю)..." style="width: calc(100% - 10px); height: 50px; margin-bottom: 5px; font-family: monospace; font-size: 10pt;"></textarea>
+        
+        <label for="avatar-input">Аватарка:</label>
+        <div style="margin-bottom: 10px;">
+            <input type="file" id="avatar-input" accept="image/*">
+            <button type="button" onclick="deleteAvatar()" style="display: inline-block; width: auto; padding: 2px 8px; margin-top: 5px; background: #f0e0d6; border: 1px solid #d9bfb7; font-size: 8pt; color: #af0a0f;">Видалити аватарку</button>
+            
+        </div>
+
+        <div style="margin: 10px 0; font-size: 9pt;">
+            <label><input type="checkbox" id="hide-profile-checkbox"> Сховати мій профіль від інших</label>
+        </div>
+
+        <button onclick="saveProfile()">Зберегти зміни</button>
+        </div>
+        <hr style="margin: 15px 0;">
+
+        <button onclick="window.location.href='board.html';">Створити тред</button>
+
+        <h4>📝 Мої треди:</h4>
+        <div id="my-threads-list" style="max-height: 150px; overflow-y: auto; background: #fff; padding: 5px; border: 1px solid #a9a9a9; font-size: 9pt; text-align: left;">
+        </div>
+        
+    
+
+    <!-- Блок дошок -->
+    <div class="boards-container">
+        <a class="board" href="board.html?id=1">Радіоактивний брєд /b/</a>
+        <a class="board" href="board.html?id=2">Аніме та манґа /a/</a>
+        <a class="board" href="board.html?id=3">Музика /mu/</a>
+        <a class="board" href="board.html?id=4">дошка 4</a>
+        <a class="board" href="board.html?id=5">дошка 5</a>
+        <a class="board" href="board.html?id=6">дошка 6</a>
+        <a class="board" href="board.html?id=7">дошка 7</a>
+        <a class="board" href="board.html?id=8">дошка 8</a>
+        <a class="board" href="board.html?id=9">дошка 9</a>
+        <a class="board" href="board.html?id=10">дошка 10</a>
+    </div>
+
+    <div id="popular-threads-container" style="max-width: 800px; margin: 30px auto; padding: 10px;">
+        <h2 style="color: #af0a0f; text-align: center; font-size: 14pt;">🔥 Популярні треди прямо зараз:</h2>
+        <div id="popular-threads-list"></div>
+    </div>
+
+    <img class="site-header" src="img/befchanhat.jpg" alt="тут буде шапка сайту" class="header-img">
+
+    <img class="zad" src="" alt="">
+</body>
+</html>

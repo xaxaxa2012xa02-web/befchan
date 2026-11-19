@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/konatagif.gif">
+    <link rel="stylesheet" href="styly.css">
+    <title>Дошка</title>
+    <script src="script2.js"></script>
+</head>
+<body>
+
+    <div>
+        <a class="back" href="index.html">назад на головну</a>
+        <h1 class="zagolog" id="boardTitle">Завантаження дошки...</h1>
+    </div>
+
+    <button id="backToThreads" style="display:none;" onclick="showThreadList()">← Назад до тредів</button>
+
+    <div id="threadForm" class="post-form">
+        <h3>Створити новий тред</h3>
+        <input type="text" id="threadTitle" placeholder="Назва треду">
+        
+        <!-- Панель з Каомоджі для створення треду -->
+        <div class="kaomoji-bar" style="margin: 5px 0; text-align: left; font-size: 9pt;">
+            <span style="font-weight: bold; color: #555;">Каомоджі: </span>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('threadText', '(｡· v ·｡)')">(｡· v ·｡)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('threadText', '( ͡° 自由 ͡°)')">( ͡° ͜ʖ ͡°)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('threadText', '(•_•)')">(•_•)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('threadText', '(x_x)')">(x_x)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('threadText', '( ˶°ㅁ°)')">( ˶°ㅁ°)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('threadText', '( >_< )')">( >_< )</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('threadText', '¯\\_(ツ)_/¯')">¯\_(ツ)_/¯</button>
+        </div>
+
+        <textarea id="threadText" placeholder="Текст першого поста"></textarea>
+        <input type="file" id="threadImage" accept="image/*">
+        <button onclick="createThread()">Створити тред</button>
+    </div>
+
+    <div id="replyForm" class="post-form" style="display:none;">
+        <h3>Відповісти у тред</h3>
+        
+        <!-- Панель з Каомоджі для відповідей у треді -->
+        <div class="kaomoji-bar" style="margin: 5px 0; text-align: left; font-size: 9pt;">
+            <span style="font-weight: bold; color: #555;">Каомоджі: </span>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('replyText', '(｡· v ·｡)')">(｡· v ·｡)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('replyText', '( ͡° ͜ʖ ͡°)')">( ͡° ͜ʖ ͡°)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('replyText', '(•_•)')">(•_•)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('replyText', '(x_x)')">(x_x)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('replyText', '( ˶°ㅁ°)')">( ˶°ㅁ°)</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('replyText', '( >_< )')">( >_< )</button>
+            <button type="button" class="kaomoji-btn" onclick="insertKaomojiTo('replyText', '¯\\_(ツ)_/¯')">¯\_(ツ)_/¯</button>
+        </div>
+
+        <textarea id="replyText" placeholder="Ваша відповідь"></textarea>
+        <input type="file" id="replyImage" accept="image/*">
+        <button onclick="addReply()">Відправити</button>
+    </div>
+
+    <hr>
+
+    <div id="mainContent"></div>
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+/* --- Загальні налаштування у стилі 4chan (Yotsuba B) --- */
+body {
+    color: #330000;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10pt;
+    margin: 0;
+    padding: 10px;
+}
+
+a {
+    color: #34345c;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #ff0000;
+}
+
+/* Кнопка "Назад" */
+.back {
+    display: inline-block;
+    background-color: #f0e0d6;
+    color: #34345c;
+    padding: 3px 8px;
+    text-decoration: none;
+    border: 1px solid #d9bfb7;
+    font-size: 9pt;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.back:hover {
+    background-color: #e0c0b0;
+    color: #ff0000;
+}
+
+/* --- Хедер та заголовки --- */
+.site-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.centered-img {
+    max-width: 250px;
+    height: auto;
+}
+
+.header-subtitle {
+    font-size: 18pt;
+    font-weight: bold;
+    letter-spacing: -1px;
+    color: #af0a0f;
+    margin: 5px 0;
+}
+
+.zagolog {
+    text-align: center;
+    color: #af0a0f;
+    font-size: 20pt;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Гіфка внизу головної */
+img.zagolog {
+    display: block;
+    margin: 20px auto;
+    max-width: 150px;
+}
+
+/* --- Навігація: Дошки (Борди) --- */
+.boards-container {
+    text-align: center;
+    background-color: #f0e0d6;
+    border: 1px solid #d9bfb7;
+    padding: 8px;
+    margin: 15px auto;
+    max-width: 90%;
+}
+
+.board {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 3px 5px;
+    font-size: 11pt;
+    font-weight: bold;
+    color: #34345c !important;
+    text-decoration: none;
+}
+
+.board:hover {
+    text-decoration: underline;
+    background-color: transparent;
+    border: none;
+}
+
+/* --- Форми створення тредів / відповідей --- */
+.post-form {
+    background-color: #d6daf0;
+    border: 1px solid #b7c5d9;
+    padding: 8px;
+    margin: 10px auto 20px auto;
+    width: 450px;
+    box-shadow: none;
+}
+
+.post-form h3 {
+    margin: 0 0 8px 0;
+    font-size: 10pt;
+    color: #0f0c5d;
+    text-align: center;
+}
+
+.post-form input[type="text"], 
+.post-form textarea {
+    display: block;
+    width: calc(100% - 10px);
+    margin-bottom: 5px;
+    padding: 3px;
+    border: 1px solid #a9a9a9;
+    font-family: monospace;
+    font-size: 10pt;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.post-form textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.post-form label {
+    font-size: 9pt;
+    color: #444;
+}
+
+.post-form input[type="file"] {
+    font-size: 9pt;
+    margin-bottom: 5px;
+}
+
+.post-form button {
+    display: block;
+    width: 100%;
+    background-color: #e0e0e0;
+    border: 1px solid #a9a9a9;
+    color: #000;
+    padding: 4px;
+    font-size: 10pt;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.post-form button:hover {
+    background-color: #d0d0d0;
+}
+
+/* Кнопка "Назад до тредів" */
+#backToThreads {
+    background-color: #f0e0d6;
+    border: 1px solid #d9bfb7;
+    color: #34345c;
+    font-weight: bold;
+    padding: 4px 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+/* Лінія розмежування */
+hr {
+    border: 0;
+    border-top: 1px solid #d9bfb7;
+    margin: 20px 0;
+}
+
+/* --- Картки тредів у списку (Борда) --- */
+#mainContent h2 {
+    font-size: 12pt;
+    color: #af0a0f;
+    margin-bottom: 10px;
+}
+
+.thread-card {
+    background-color: #d6daf0 !important; /* Ніжно-блакитний для постів */
+    border: 1px solid #b7c5d9 !important;
+    padding: 10px;
+    margin-bottom: 12px;
+    width: auto;
+    max-width: 800px;
+    box-shadow: none;
+}
+
+.thread-card strong {
+    color: #117743; /* Зелений колір нікнеймів */
+    font-size: 9pt;
+}
+
+.thread-card h4 {
+    margin: 5px 0;
+    color: #0f0c5d;
+    font-size: 11pt;
+}
+
+.thread-card p {
+    margin: 5px 0;
+    color: #000000;
+}
+
+.thread-card small {
+    color: #707070;
+    font-size: 8pt;
+}
+
+/* --- Перегляд треду (Усередині) --- */
+
+/* ОП-пост (Головний пост треду) */
+#mainContent > div[style*="border: 3px solid green"] {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 20px !important;
+    overflow: hidden;
+}
+
+#mainContent > div[style*="border: 3px solid green"] strong {
+    color: #117743 !important;
+    font-weight: bold;
+}
+
+#mainContent > div[style*="border: 3px solid green"] p {
+    color: #000000;
+    margin: 8px 0;
+}
+
+/* Блок з коментарями / відповідями */
+#mainContent > div[style*="margin-left: 30px"] {
+    margin-left: 20px !important;
+    display: table; /* Імітація поведінки постів 4chan */
+}
+
+/* Окремий пост-відповідь */
+#mainContent div[style*="border: 1px solid gray"] {
+    background-color: #d6daf0 !important;
+    border: 1px solid #b7c5d9 !important;
+    padding: 6px 10px 6px 8px !important;
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+    display: table;
+    clear: both;
+    max-width: 100%;
+}
+
+/* Заголовок поста (Нік, аватарка тощо) */
+.reply-header {
+    font-size: 9pt;
+    color: #444;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.reply-header strong {
+    color: #117743 !important; /* Зелений нікнейм */
+}
+
+/* Текст самого поста */
+#mainContent p {
+    color: #000000 !important;
+    font-size: 10pt;
+    margin: 5px 0 !important;
+    word-break: break-word;
+}
+
+/* Текст цитування (>>нінейм або @нікнейм) */
+#mainContent span[style*="color: gray"] {
+    color: #ff0000 !important; /* Бордові посилання на відповіді */
+    font-size: 9pt !important;
+    font-family: monospace;
+}
+
+/* Зображення у постах */
+#mainContent img {
+    float: left;
+    margin: 5px 20px 5px 0;
+    border: 0;
+    max-width: 120px !important; /* Компактні прев'ю картинок */
+    height: auto;
+}
+
+/* Очищення флоату після картинок */
+#mainContent div[style*="border: 1px solid gray"]::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* Кнопки видалення */
+button[onclick*="delete"] {
+    background: #f0e0d6 !important;
+    border: 1px solid #d9bfb7 !important;
+    color: #af0a0f !important;
+    font-size: 8pt !important;
+    padding: 1px 4px !important;
+    cursor: pointer;
+    float: right;
+    margin-left: 10px;
+}
+
+button[onclick*="delete"]:hover {
+    background: #af0a0f !important;
+    color: #ffffff !important;
+}
+
+.statistik {
+    display: fixed;
+
+   
+}
+.site-header {
+  width: 100%;
+}
+
+.header-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+.bottom-bg {
+  position: absolute;   /* Вириває фото з загального потоку */
+  bottom: 0;            /* Приклеює до самого низу */
+  left: 0;              /* Приклеює до лівого краю */
+  width: 100%;          /* Розтягує на всю ширину */
+  height: 200px;        /* Задайте потрібну вам висоту фото */
+  object-fit: cover;    /* Зберігає пропорції, обрізаючи зайве */
+}
+
+.header-subtitle {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
